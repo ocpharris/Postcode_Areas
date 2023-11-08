@@ -81,6 +81,8 @@ app.configure(bg="navy")
 # Add a field for entering the postcode
 postcode_label = ttk.Label(app, text="Enter Postcode:")
 postcode_label.pack()
+example_label = postcode_label = ttk.Label(app, text="e.g. AB1 0AA (for 6 characters) or SW1P3XA (for 7 characters)")
+example_label.pack()
 postcode_entry = ttk.Entry(app)
 postcode_entry.pack()
 
