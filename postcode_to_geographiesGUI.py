@@ -10,29 +10,44 @@ import io
 import sys
 import os
 from datetime import datetime
-from postcode_to_areas_only import select_postcode_csv  
-from postcode_to_areas_only import postcode_to_OAs
+
+# finds relative path of file 
+# path = os.path.abspath(os.path.join(os.path.dirname("__file__"), '..', 'postcode_to_areas_only.py'))
+
+
+# sys.path.append(path)
+
+
+# standalone exe
+# from postcode_to_areas_exe import select_postcode_csv
+# from postcode_to_areas_exe import postcode_to_OAs
+
+# running script locally 
+from postcode_to_areas_local import select_postcode_csv
+from postcode_to_areas_local import postcode_to_OAs
 
 
 
 
+# Redirect standard output and error to a log file
+# sys.stdout = open('stdout.log', 'w')
+# sys.stderr = open('stderr.log', 'w')
 
 
-
-
- 
 
 
 def scrape_data_button():
     postcode  = postcode_entry.get()
     
-
+   
 
     try:
           # generate the Excel file
         df = select_postcode_csv(postcode)
+        
         if df is not None:
             postcode_to_OAs(df,postcode)
+        
 
 
         result_text.config(state=tk.NORMAL)

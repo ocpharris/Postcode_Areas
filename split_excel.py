@@ -7,7 +7,7 @@ import sys
 import os
 from datetime import datetime
 
-def split_csv_by_postcode(self):
+def split_csv_by_postcode():
         # URL of the zip file to load
         zip_file_url = 'https://www.arcgis.com/sharing/rest/content/items/e7824b1475604212a2325cd373946235/data'
 
@@ -52,3 +52,6 @@ def split_csv_by_postcode(self):
             print(f"Error downloading the zip file: {e}")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    split_csv_by_postcode()
