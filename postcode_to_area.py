@@ -62,7 +62,6 @@ class get_areas:
 
     def select_postcode_csv(self,postcode):
 
-
             # Define the mapping of postcode ranges to CSV file names
         postcode_mapping = {
             'A': 'A-E.csv',
@@ -94,11 +93,12 @@ class get_areas:
         }
 
         # Check if the input postcode is valid
-        if len(postcode) < 1 or not postcode[0].isalpha():
-            return None  # Invalid postcode
+        # if len(postcode) < 1 or not postcode[0].isalpha():
+        #     return None  # Invalid postcode
 
         # Get the relevant CSV file based on the first letter of the postcode
         csv_file = postcode_mapping.get(postcode[0].upper())
+      
 
         if csv_file:
             # Read the CSV file into a DataFrame
