@@ -11,33 +11,62 @@ from datetime import datetime
 def select_postcode_csv(postcode):
 
         # Define the mapping of postcode ranges to CSV file names
+        # postcode_mapping = {
+        #     'A': 'A-E',
+        #     'B': 'A-E',
+        #     'C': 'A-E',
+        #     'D': 'A-E',
+        #     'E': 'A-E',
+        #     'F': 'F-J',
+        #     'G': 'F-J',
+        #     'H': 'F-J',
+        #     'I': 'F-J',
+        #     'J': 'F-J',
+        #     'K': 'K-O',
+        #     'L': 'K-O',
+        #     'M': 'K-O',
+        #     'N': 'K-O',
+        #     'O': 'K-O',
+        #     'P': 'P-T',
+        #     'Q': 'P-T',
+        #     'R': 'P-T',
+        #     'S': 'P-T',
+        #     'T': 'P-T',
+        #     'U': 'U-Z',
+        #     'V': 'U-Z',
+        #     'W': 'U-Z',
+        #     'X': 'U-Z',
+        #     'Y': 'U-Z',
+        #     'Z': 'U-Z',
+        # }
+
         postcode_mapping = {
-            'A': 'A-E',
-            'B': 'A-E',
-            'C': 'A-E',
-            'D': 'A-E',
-            'E': 'A-E',
-            'F': 'F-J',
-            'G': 'F-J',
-            'H': 'F-J',
-            'I': 'F-J',
-            'J': 'F-J',
-            'K': 'K-O',
-            'L': 'K-O',
-            'M': 'K-O',
-            'N': 'K-O',
-            'O': 'K-O',
-            'P': 'P-T',
-            'Q': 'P-T',
-            'R': 'P-T',
-            'S': 'P-T',
-            'T': 'P-T',
-            'U': 'U-Z',
-            'V': 'U-Z',
-            'W': 'U-Z',
-            'X': 'U-Z',
-            'Y': 'U-Z',
-            'Z': 'U-Z',
+            'A': 'A-E.csv',
+            'B': 'A-E.csv',
+            'C': 'A-E.csv',
+            'D': 'A-E.csv',
+            'E': 'A-E.csv',
+            'F': 'F-J.csv',
+            'G': 'F-J.csv',
+            'H': 'F-J.csv',
+            'I': 'F-J.csv',
+            'J': 'F-J.csv',
+            'K': 'K-O.csv',
+            'L': 'K-O.csv',
+            'M': 'K-O.csv',
+            'N': 'K-O.csv',
+            'O': 'K-O.csv',
+            'P': 'P-T.csv',
+            'Q': 'P-T.csv',
+            'R': 'P-T.csv',
+            'S': 'P-T.csv',
+            'T': 'P-T.csv',
+            'U': 'U-Z.csv',
+            'V': 'U-Z.csv',
+            'W': 'U-Z.csv',
+            'X': 'U-Z.csv',
+            'Y': 'U-Z.csv',
+            'Z': 'U-Z.csv',
         }
 
 
@@ -45,11 +74,24 @@ def select_postcode_csv(postcode):
         if len(postcode) < 1 or not postcode[0].isalpha():
             return None  # Invalid postcode
 
+        # # # Get the relevant CSV file based on the first letter of the postcode
+        # csv_file = postcode_mapping.get(postcode[0].upper())
+        
+        # # # Construct the absolute path to the CSV file
+        # # path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', csv_file))
+        # # print(f'path:, {path}')
+
+
+        # # exe_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
+        # path = os.path.relpath(csv_file, start=os.path.dirname(__file__))
+        #     # Construct the relative path to the CSV file
+        # # path = os.path.join(os.path.dirname(__file__), csv_file)
+
         # Get the relevant CSV file based on the first letter of the postcode
         csv_file = postcode_mapping.get(postcode[0].upper())
         path = os.path.abspath(os.path.join(os.path.dirname("__file__"), '..', csv_file))
-
-
+        print(path)
+      
 
         sys.path.append(path)
 
@@ -57,6 +99,7 @@ def select_postcode_csv(postcode):
             # Read the CSV file into a DataFrame
             try:
                 df = pd.read_csv(csv_file)
+              
                 return df
             except FileNotFoundError:
                 return None  # CSV file not found
